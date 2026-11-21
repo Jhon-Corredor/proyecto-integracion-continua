@@ -11,13 +11,13 @@ pipeline {
         stage('2. Verificar Estructura de Contenedores') {
             steps {
                 echo 'Validando archivos Dockerfile, docker-compose.yml e index.js...'
-                sh 'ls -la'
+                sh 'ls -la proyecto-docker-semana3'
             }
         }
         stage('3. Validar Manifiesto de Dependencias') {
             steps {
                 echo 'Comprobando configuración en package.json...'
-                sh 'cat package.json'
+                sh 'cat proyecto-docker-semana3/package.json'
             }
         }
     }
