@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('1. Obtener Código Fuente') {
+            steps {
+                echo 'Descargando última versión desde el repositorio en GitHub...'
+                checkout scm
+            }
+        }
+        stage('2. Verificar Estructura de Contenedores') {
+            steps {
+                echo 'Validando archivos Dockerfile, docker-compose.yml e index.js...'
+                sh 'ls -la'
+            }
+        }
+        stage('3. Validar Manifiesto de Dependencias') {
+            steps {
+                echo 'Comprobando configuración en package.json...'
+                sh 'cat package.json'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Integración continua verificada correctamente.'
+        }
+        failure {
+            echo 'Error durante la integración. Revisar registros de consola.'
+        }
+    }
+}
